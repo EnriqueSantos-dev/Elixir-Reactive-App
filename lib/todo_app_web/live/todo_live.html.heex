@@ -1,0 +1,39 @@
+<div class="max-w-[500px] w-full p-6 shadow-2xl space-y-6 bg-white rounded">
+  <h1 class="text-3xl text-semibold text-center text-black">Todo App</h1>
+
+  <div class="grid grid-cols-3 gap-2 text-zinc">
+    <TodoAppWeb.Button.button filter="all" text="All" active_filter={@active_filter}/>
+    <TodoAppWeb.Button.button filter="active" text="Actives" active_filter={@active_filter}/>
+    <TodoAppWeb.Button.button filter="completed" text="Completed" active_filter={@active_filter}/>
+  </div>
+  <div>
+    <.form for={:new_todo} let={f} phx-submit="new_todo_form">
+      <label class="text-lg">
+        Todo <%= text_input f, :message, class: "w-full rounded border border-zinc-300 p-2 text-zinc-800 mt-2" %>
+      </label>
+    </.form>
+  </div>
+
+  <%= if Enum.any?(@filtered_todos) do %>
+    <div>
+      <ul class="flex flex-col gap-4">
+        <%= for todo <- @filtered_todos do %>
+          <TodoAppWeb.Todo.todo todo={todo}/>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="flex rounded border border-zinc-300 p-2">
+    <div class="flex items-center space-x-3">
+      <p class="text-xs text-zinc-700">Active todos: </p>
+      <span class="flex items-center justify-center h-5 bg-gray-300 text-white rounded-sm px-2"><%= @active_todos %></span>
+    </div>
+
+    <div class="flex-1 text-right">
+      <button
+        phx-click="select_all_todos"
+        class="uppercase text-zinc-700 text-xs hover:opacity-80 transition-opacity border border-zinc-300 px-2 py-1 rounded">complete all todos</button>
+    </div>
+  </div>
+</div>
