@@ -3,10 +3,10 @@
 Instruções para rodar o projeto
 
 1. Subir o banco de dados
-"""bash
+```bash
 docker compose up -d
-"""
+```
 2. executar o servidor
-"""bash
+```bash
 mix phx.server
-"""
+```
