@@ -6,6 +6,10 @@ Instruções para rodar o projeto
 ```bash
 docker compose up -d
 ```
+3. baixar as depedências
+```bash
+mix deps.get
+```
 2. executar o servidor
 ```bash
 mix phx.server
