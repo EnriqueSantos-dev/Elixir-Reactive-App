@@ -7,10 +7,10 @@ Instruções para rodar o projeto
 docker compose up -d
 ```
 3. baixar as depedências
-```bash
+```elixir
 mix deps.get
 ```
 2. executar o servidor
-```bash
+```elixir
 mix phx.server
 ```
