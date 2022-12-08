@@ -1,7 +1,7 @@
 defmodule TodoAppWeb.TodoLive do
   use TodoAppWeb, :live_view
 
-  def mount(assign, _params, socket) do
+  def mount(_, _, socket) do
     todos = []
     filtered_todos = todos
     active_filter = "all"
@@ -95,6 +95,6 @@ defmodule TodoAppWeb.TodoLive do
 
   def actives_todos(socket) do
     socket
-      |> assign(:active_todos, Enum.count(socket.assigns.todos, fn t -> t.completed end))
+      |> assign(:active_todos, Enum.count(socket.assigns.todos, fn t -> not t.completed end))
   end
 end
