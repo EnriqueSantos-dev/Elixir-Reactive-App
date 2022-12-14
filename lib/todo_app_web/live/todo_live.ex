@@ -6,7 +6,7 @@ defmodule TodoAppWeb.TodoLive do
     filtered_todos = todos
     active_filter = "all"
 
-    socket = 
+    socket =
       socket
       |> assign(:todos, todos)
       |> assign(:filtered_todos, filtered_todos)
@@ -29,9 +29,9 @@ defmodule TodoAppWeb.TodoLive do
   end
 
   def handle_event("select_all_todos", _params, socket) do
-    socket = 
+    socket =
       socket
-      |> assign(:todos, 
+      |> assign(:todos,
           Enum.map(socket.assigns.todos, fn todo -> %{todo | completed: true} end)
           )
       |> actives_todos()
@@ -45,7 +45,7 @@ defmodule TodoAppWeb.TodoLive do
       socket
       |> assign(:todos, Enum.filter(socket.assigns.todos, fn todo -> todo.id != id end))
       |> filter_todos()
-    
+
       {:noreply, socket}
   end
 
@@ -61,8 +61,8 @@ defmodule TodoAppWeb.TodoLive do
 
   def handle_event("toggle_todo_status", %{"id" => id}, socket) do
     socket =
-      socket 
-      |> assign(:todos, Enum.map(socket.assigns.todos, fn todo -> 
+      socket
+      |> assign(:todos, Enum.map(socket.assigns.todos, fn todo ->
         if todo.id == id do
           %{todo | completed: not todo.completed}
         else
